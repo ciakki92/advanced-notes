@@ -1,28 +1,33 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'src/app/shared/model/Message.model';
+import { getCurrentUser, scrollChatToBottom } from 'src/app/shared/utils/utils';
 
 @Component({
   selector: 'app-chat-message',
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.scss'],
 })
-export class ChatMessageComponent implements OnInit {
+export class ChatMessageComponent implements OnInit, AfterContentInit {
   @Input() messages!: Message[];
   @Output() sentMessage = new EventEmitter<Message>();
+  @Output() filter = new EventEmitter<string>();
 
-  currentUser: string = 'adelloste';
+  currentUser: string;
   chatForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {}
 
+
   ngOnInit(): void {
+    this.currentUser = getCurrentUser();
     this.createForm();
   }
 
-  search() {
-    console.log('search!');
+  ngAfterContentInit(): void {
+    setTimeout(() => scrollChatToBottom(), 0.5);
   }
+
 
   createForm(): void {
     this.chatForm = this.fb.group({
@@ -33,15 +38,15 @@ export class ChatMessageComponent implements OnInit {
   send(): void {
     if (this.chatForm.value.message && this.chatForm.value.message !== '') {
 
-      setTimeout(() => this.scrollChatToBottom(), 1);
+      setTimeout(() => scrollChatToBottom(), 1);
 
       // create message
       let msg: Message = {
         id: '1',
         image: '../../../../../assets/images/avatar-2.jpg',
-        name: 'Alessandro',
-        surname: "Dell'Oste",
-        nickname: 'adelloste',
+        name: 'Gabriele',
+        surname: "Zaccaria",
+        nickname: 'g.zaccaria',
         date: Date.now(),
         message: this.chatForm.value.message,
       };
@@ -52,9 +57,10 @@ export class ChatMessageComponent implements OnInit {
     }
   }
 
-  scrollChatToBottom() {
-    let messageContainer = document.getElementById('message-container');
-    let messageContainerCurrentHeight = messageContainer?.scrollHeight;
-    messageContainer.scrollTop = messageContainerCurrentHeight;
+
+
+  handleInput(filter: any) {
+    this.filter.emit(filter.target.value);
+    console.log('filter: ', filter.target.value)
   }
 }

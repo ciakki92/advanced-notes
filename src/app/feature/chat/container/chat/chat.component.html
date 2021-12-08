@@ -1,3 +1,3 @@
 <!--  {{messageList | json}} -->
 
-<app-chat-message *ngIf="messageList" [messages]="messageList" (sentMessage)="handleSentMessage($event)"></app-chat-message>
+<app-chat-message *ngIf="messageList" [messages]="messageList" (sentMessage)="handleSentMessage($event)" (filter)="handleFilter($event)"></app-chat-message>
