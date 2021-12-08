@@ -1,6 +1,14 @@
-# EChallenge
+# Advanced Notes
 
-Advanced Notes
+## Functionalities
+- A. The application should display “other people” notes in the element from a static JSON that you’ll define
+- B. The final user will be able to write text notes and publish it in the notes message list
+- C. Each note must have the photo of the author, her/his name-surname and the publishing date and time
+- D. If a note is greater than three rows trim the rest of the content and show a “Read More” CTA that expands the note message with the whole text.
+- E. All notes should be sorted by publishing date (newest at bottom)
+- F. Store the messages you’ve published inside Browser LocalStorage and keep them in the notes message list as long as user doesn’t delete browser cache (e.g. if I write: “Hello!”, it should be displayed also if I refresh the page)
+- G. Make it responsive: min-width: 375px, max-width 1200px;
+- H. Add a “filter” functionality to show only messages from selected “people”
 
 ## Getting Started
 
