@@ -4,13 +4,13 @@ Advanced Notes
 
 ## Getting Started
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5
 
 ### Clone the repo
 
 ```shell
-git clone https://github.com/adelloste/e-challenge.git
-cd e-challenge
+git clone https://github.com/ciakki92/advanced-notes.git
+cd advanced-notes
 ```
 
 ### Install npm packages
@@ -30,22 +30,8 @@ Questi sono i comandi definiti in `package.json`:
 
 ### Demo
 
-Published site at https://csb-hy3sk-jb59g2p9p-adelloste.vercel.app
+Published site at https://advanced-notes.surge.sh
 
-## Project structure
+### Codesandbox
 
-```
-e-challenge/
-└── e2e
-└── src
-    ├── app
-    │   ├── chat
-    │   │   ├── shared
-    │   │   ├── chat
-    │   │   ├── chat-routing.module.ts
-    │   │   └── chat.module.ts
-    │   ├── core
-    │   └── shared
-    ├── assets
-    └── environments
-```
+Published sandbox at https://codesandbox.io/s/wizardly-https-wrdbu

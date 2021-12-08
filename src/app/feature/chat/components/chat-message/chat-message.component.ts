@@ -60,7 +60,6 @@ export class ChatMessageComponent implements OnInit, AfterContentInit {
 
 
   handleInput(filter: any) {
-    this.filter.emit(filter.target.value);
-    console.log('filter: ', filter.target.value)
+    this.filter.emit(filter.target.value)
   }
 }
