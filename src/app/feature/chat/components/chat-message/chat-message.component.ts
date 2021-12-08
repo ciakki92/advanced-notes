@@ -43,7 +43,7 @@ export class ChatMessageComponent implements OnInit, AfterContentInit {
       // create message
       let msg: Message = {
         id: '1',
-        image: '../../../../../assets/images/avatar-2.jpg',
+        image: '../../../../../assets/images/avatar-1.png',
         name: 'Gabriele',
         surname: "Zaccaria",
         nickname: 'g.zaccaria',
