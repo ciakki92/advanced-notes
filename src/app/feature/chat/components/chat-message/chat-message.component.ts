@@ -20,29 +20,36 @@ export class ChatMessageComponent implements OnInit, AfterContentInit {
 
 
   ngOnInit(): void {
+    // get and save current user
     this.currentUser = getCurrentUser();
     this.createForm();
   }
 
   ngAfterContentInit(): void {
+    // scroll to chat component bottom
     setTimeout(() => scrollChatToBottom(), 0.5);
   }
 
 
+  /**
+   * Form inizialization
+   */
   createForm(): void {
     this.chatForm = this.fb.group({
       message: ['', Validators.compose([])],
     });
   }
 
+  /**
+   * Create new message for current user and emit it to parent component
+   */
   send(): void {
     if (this.chatForm.value.message && this.chatForm.value.message !== '') {
 
       setTimeout(() => scrollChatToBottom(), 1);
 
-      // create message
+      // create new message
       let msg: Message = {
-        id: '1',
         image: '../../../../../assets/images/avatar-1.png',
         name: 'Gabriele',
         surname: "Zaccaria",
@@ -50,16 +57,20 @@ export class ChatMessageComponent implements OnInit, AfterContentInit {
         date: Date.now(),
         message: this.chatForm.value.message,
       };
-      // add message
+      // emit message to parent component
       this.sentMessage.emit(msg);
       // reset form
       this.chatForm.reset();
     }
   }
 
-
-
+  /**
+   *
+   * @param filter : search parameter typed by user;
+   */
   handleInput(filter: any) {
+
+    //emit search parameter to parent component
     this.filter.emit(filter.target.value)
   }
 }

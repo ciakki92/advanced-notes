@@ -9,6 +9,10 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   *
+   * @returns message list from json mock
+   */
   getMessages() {
     return this.http.get<Message[]>('../../../../assets/mock/db.json');
   }

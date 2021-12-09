@@ -1,42 +1,52 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+} from '@angular/core';
 
 @Component({
   selector: 'app-read-more',
   templateUrl: './read-more.component.html',
-  styleUrls: ['./read-more.component.scss']
+  styleUrls: ['./read-more.component.scss'],
 })
 export class ReadMoreComponent implements OnInit, AfterViewInit {
+  // Message to show inside container
+  @Input() text!: string;
 
-// the text that need to be put in the container
-@Input() text!: string;
-// maximum height of the container
-@Input() maxHeight: number = 75;
+  // Max height of container
+  @Input() maxHeight: number = 75;
 
-// set these to false to get the height of the expended container
-isCollapsed: boolean = false;
-isCollapsable: boolean = false;
+  isCollapsed: boolean = false;
+  isCollapsable: boolean = false;
 
-constructor(
-  private elementRef: ElementRef,
-  private cdRef: ChangeDetectorRef
-) { }
+  constructor(
+    private elementRef: ElementRef,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
-ngOnInit(): void { }
+  ngOnInit(): void {}
 
-ngAfterViewInit() {
-  let currentHeight = this.elementRef.nativeElement.getElementsByTagName('div')[0].offsetHeight;
-  // collapsable only if the contents make container exceed the max height
-  if (currentHeight > this.maxHeight) {
-    this.isCollapsed = true;
-    this.isCollapsable = true;
+  ngAfterViewInit() {
+    let currentHeight =
+      this.elementRef.nativeElement.getElementsByTagName('div')[0].offsetHeight;
+    // collapsable only if the contents make container exceed the max height
+    if (currentHeight > this.maxHeight) {
+      this.isCollapsed = true;
+      this.isCollapsable = true;
+    }
+    // trigger detection
+    this.cdRef.detectChanges();
   }
-  // trigger detection
-  this.cdRef.detectChanges();
-}
 
-changeStatus(): void {
-  // show all message and remove cta "Read More"
-  this.isCollapsed = false;
-  this.isCollapsable = false;
-}
+  /**
+   * Intercept click on read more, change status of collapsable and collapsed item
+   */
+  changeStatus(): void {
+    // show all message and remove cta "Read More"
+    this.isCollapsed = false;
+    this.isCollapsable = false;
+  }
 }
